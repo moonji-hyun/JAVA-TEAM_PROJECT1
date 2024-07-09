@@ -6,42 +6,42 @@ public class MemberDTO {
 	// 필드
 	private String id;
 	private String pw;
+	private String name;
 	private String nickName;
 	private String birth;// 주민번호 앞자리 string으로 저장
-	private String sex; // 주민번호 뒷자리 첫번째 숫자 x%2이용하여 판별
+	private int sex; // 주민번호 뒷자리 첫번째 숫자 x%2이용하여 판별
 	private String pNo; // 전화번호 - 없이 저장
+	private String mail;
 	private Boolean loginStatus;
-	private Object author;
+	private Author author;
 
-	
 	// 생성자
-	  public MemberDTO() {
-//	      this.id = "guest";
-//	      this.nickName = "guest";
-//	      this.author = Author.GUEST;
-//	      this.loginStatus=false;
-	   }
-	   
-	   public MemberDTO(String id,String pw) {//로그인시 생성자
-	      this.id = id;
-	      this.pw = pw;      
-	  //    this.nickName = LoginDTO.   로그인한 정보의 닉네임을 가져온다.
-	      this.loginStatus=false; //로그인 검증후 성공시 변경
-	   }
-	   
-	   public MemberDTO(String id,String pw,String ssn,String nickName,String pNo,String mail) {//회원가입시 생성자
-	      this.id = id;
-	      this.pw = pw;
-	      //this.birth = ssn에서 숫자추출하여 삽입(메서드)
-	      //this.sex = ssn에서 숫자추출하여 삽입(메서드)
-	      this.nickName = nickName;
-	      this.pNo = pNo;
-	      this.mail = mail;
-	      this.author = Author.USER; //회원가입시 권한부여
-	      this.loginStatus=false; //로그인하면 상태수정
-	   }
+	public MemberDTO() {
+		this.id = "guest";
+		this.nickName = "guest";
+		this.author = Author.GUEST;
+		this.loginStatus=false;
+	}
 	
+	public MemberDTO(String id,String pw) {//로그인시 생성자
+		this.id = id;
+		this.pw = pw;		
+		this.loginStatus=false; //로그인 검증후 성공시 변경
+	}
 	
+	public MemberDTO(String id,String pw,String name,String ssn,String nickName,String pNo,String mail) {//회원가입시 생성자
+		this.id = id;
+		this.pw = pw;
+		this.birth = ssn.substring(0, 6);
+		this.sex = (int)ssn.charAt(6) ;
+		this.name = name;
+		this.nickName = nickName;
+		this.pNo = pNo;
+		this.mail = mail;
+		this.author = Author.USER; //회원가입시 권한부여
+		this.loginStatus=false; //로그인하면 상태수정
+	}
+
 	// 메서드
 	public String getId() {
 		return id;
@@ -59,7 +59,7 @@ public class MemberDTO {
 		return birth;
 	}
 
-	public String getSex() {
+	public int getSex() {
 		return sex;
 	}
 
@@ -71,8 +71,8 @@ public class MemberDTO {
 		return mail;
 	}
 
-	public void setId(String id,  ArrayList<MemberDTO> loginDTOs) { //회원가입시 Id  생성 중복 검증용 setter
-			this.id = id;
+	public void setId(String id, ArrayList<MemberDTO> loginDTOs) {
+		this.id = id;
 	}
 
 	public void setPw(String pw) {
@@ -87,7 +87,7 @@ public class MemberDTO {
 		this.birth = birth;
 	}
 
-	public void setSex(String sex) {
+	public void setSex(int sex) {
 		this.sex = sex;
 	}
 
@@ -107,16 +107,22 @@ public class MemberDTO {
 		this.loginStatus = loginStatus;
 	}
 
-	private String mail;
-
-
-	public Object getAuthor() {
+	public Author getAuthor() {
 		return author;
 	}
 
-	public void setAuthor(Object author) {
+	public void setAuthor(Author author) {
 		this.author = author;
 	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
 	
 
 }

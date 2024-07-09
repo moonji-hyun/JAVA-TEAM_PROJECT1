@@ -1,11 +1,10 @@
 package com.show.DTO;
 
 public enum Author {
-	GUEST,		// 0 방문자
-	USER,		// 1 회원(로그인)
-	MANAGER,	// 2 중간관리자
-	ADMIN		// 3 사이트 관리자
-	
-	
-	
+	GUEST,			//0
+	USER,			//1
+	MANAGER,		//2
+	SUPERMANGER,	//3
+	ADMIN			//4
+
 }
