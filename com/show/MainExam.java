@@ -27,9 +27,9 @@ public class MainExam {
 	public static ArrayList<VarietyDTO> varietyDTOs = new ArrayList<VarietyDTO>();
 	
 	static {
-		MemberDTO user1 = new MemberDTO("aaa", "aaa", "kim", "2012122******", "tester", "0101234567", "aaa@aaa.com");
+		MemberDTO user1 = new MemberDTO("aaa", "aaa", "kim", "2012122", "tester", "0101234567", "aaa@aaa.com");
 		loginDTOs.add(user1);
-		MemberDTO user2 = new MemberDTO("bbb", "bbb", "lee", "9901011******", "tester2", "0109876543", "bbb@bbb.com");
+		MemberDTO user2 = new MemberDTO("bbb", "bbb", "lee", "9901011", "tester2", "0109876543", "bbb@bbb.com");
 		loginDTOs.add(user2);
 	}
 

@@ -8,29 +8,29 @@ import com.show.NoExistException;
 
 public class MyPageSV {
 	/* 메뉴-로그인회원용 */
-	public static MemberDTO menu(Scanner s, List<MemberDTO> memberDTOs, MemberDTO loginState) {
-		boolean run = true;
-		while (run) {
-			System.out.println("1.마이페이지 | 2.로그아웃");
-			int selInt = s.nextInt();
-			switch (selInt) {
-			case 1:
-				myInfo(loginState);
-				subMenu(s, memberDTOs, loginState);
-				break;
-			case 2:
-				loginState.setLoginStatus(false);
-				run = false;
-				break;
-			default:
-				System.out.println("1~2값만 입력하세요.");
-			}// --switch()
-		} // --while()
-		return loginState;
-	}// --menu()
+//	public static MemberDTO menu(Scanner s, List<MemberDTO> memberDTOs, MemberDTO loginState) {
+//		boolean run = true;
+//		while (run) {
+//			System.out.println("1.마이페이지 | 2.로그아웃");
+//			int selInt = s.nextInt();
+//			switch (selInt) {
+//			case 1:
+//				myInfo(loginState);
+//				subMenu(s, memberDTOs, loginState);
+//				break;
+//			case 2:
+//				loginState.setLoginStatus(false);
+//				run = false;
+//				break;
+//			default:
+//				System.out.println("1~2값만 입력하세요.");
+//			}// --switch()
+//		} // --while()
+//		return loginState;
+//	}// --menu()
 
 	/* 부메뉴-마이페이지 */
-	public static void subMenu(Scanner s, List<MemberDTO> memberDTOs, MemberDTO loginState) {
+	public static MemberDTO menu(Scanner s, List<MemberDTO> memberDTOs, MemberDTO loginState) {
 		boolean run = true;
 		while (run) {
 			System.out.println("1.회원정보 변경 | 2.회원탈퇴 | 3.로그아웃 | 4.닫기 ");
@@ -59,6 +59,7 @@ public class MyPageSV {
 				System.out.println("1~2값만 입력하세요.");
 			}// --switch()
 		} // --while()
+		return loginState;
 	}// --subMenu()
 
 	/* 메서드-회원정보보기 */
