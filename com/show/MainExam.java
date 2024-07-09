@@ -14,7 +14,7 @@ import com.show.SV.myPageSV;
 
 public class MainExam {
 
-	
+	public static MemberDTO lSt = new MemberDTO();
 	public static Scanner s = new Scanner(System.in);// 단어 입력
 	public static Scanner sL = new Scanner(System.in);// 긴 문장 입력
 	public static ArrayList<MemberDTO> loginDTOs = new ArrayList<MemberDTO>();
@@ -25,26 +25,14 @@ public class MainExam {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		 MemberDTO guest = new MemberDTO();
-		 loginState=guest;
-	     
-	     MemberDTO guest1 = new MemberDTO();
-	     guest1.setName("0");
-	     guest1.setid("0");
-	     guest1.setPw("0");
-	     loginDTOs.add(guest1);
-	     
-//	     MemberDTO guest2 = new MemberDTO();
-//	     guest2.setName("3");
-//	     guest2.setid("3");
-//	     guest2.setPw("3");
-//	     loginDTOs.add(guest2);
+	     loginState=guest;
 		
-		loginState.setLoginStatus(false);				
+		lSt.setLoginStatus(false);				
 		boolean run = true;
 		System.out.println("<오잼>(가제 : 오늘은 무엇이 재밌을까?)에 오신것을 환영합니다.");
 	
 		while (run) {
-			if (loginState.getLoginStatus()) {
+			if (lSt.getLoginStatus()) {
 				System.out.println("아래의 메뉴에서 골라주세요.");
 				System.out.println("1. 찾아보기  |  2. 내정보확인");
 				System.out.print(">>>");
@@ -53,11 +41,11 @@ public class MainExam {
 				switch(select) {
 				case "1" :
 					System.out.println("검색메뉴로 진입합니다.");
-					FIndSV.menu(loginState, s, sL, loginDTOs, reviewDTOs, showDTOs);
+					FIndSV.menu(lSt, s, sL, loginDTOs, reviewDTOs, showDTOs);
 					break;
 				case "2" :
 					System.out.println("내정보확인 메뉴로 진입합니다.");
-					loginState = myPageSV.menu(loginState, s, sL, loginDTOs, reviewDTOs, showDTOs);
+					lSt = myPageSV.menu(lSt, s, sL, loginDTOs, reviewDTOs, showDTOs);
 					break;
 				default :
 					System.out.println("1~2사이에서 입력해주시기 바랍니다.");
@@ -71,11 +59,11 @@ public class MainExam {
 				switch(select) {
 				case "1" :
 					System.out.println("검색메뉴로 진입합니다.");
-					FIndSV.menu(loginState, s, sL, loginDTOs, reviewDTOs, showDTOs);
+					FIndSV.menu(lSt, s, sL, loginDTOs, reviewDTOs, showDTOs);
 					break;
 				case "2" :
 					System.out.println("로그인 메뉴로 진입합니다.");
-					loginState = LoginSV.menu(loginState, s, sL, loginDTOs, reviewDTOs, showDTOs);
+					lSt = LoginSV.menu(lSt, s, sL, loginDTOs, reviewDTOs, showDTOs);
 					break;
 				default :
 					System.out.println("1~2사이에서 입력해주시기 바랍니다.");
