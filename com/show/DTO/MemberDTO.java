@@ -1,9 +1,10 @@
 package com.show.DTO;
 
-import java.util.ArrayList;
+import java.sql.Date;
 
 public class MemberDTO {
-	// 필드
+	// 필드 --DB와 공유되는 필드
+	private int mno; //멤버번호 : db에서 시퀀스로 생성
 	private String id;
 	private String pw;
 	private String name;
@@ -11,12 +12,14 @@ public class MemberDTO {
 	private String birth;// 주민번호 앞자리 string으로 저장
 	private String sex; // 주민번호 뒷자리 첫번째 숫자 x%2이용하여 판별
 	private String pNo; // 전화번호 - 없이 저장
-	private Boolean loginStatus;
-	private boolean usability;
+	private String mail;
 	private Author author;
+	//필드 --java에서 체크용으로 사용되는 필드
+	private boolean usability;
+	private boolean loginStatus;
 
 	// 생성자
-	public MemberDTO() {
+	public MemberDTO() { //기본생성자 - 게스트용 정보 자동 저장
 	      this.id = "guest";
 	      this.nickName = "guest";
 	      this.author = Author.GUEST;
@@ -26,30 +29,25 @@ public class MemberDTO {
 	public MemberDTO(String id, String pw) {// 로그인시 생성자
 		this.id = id;
 		this.pw = pw;
-		// this.nickName = LoginDTO. 로그인한 정보의 닉네임을 가져온다.
 		this.loginStatus = false; // 로그인 검증후 성공시 변경
 	}
 
-	public MemberDTO(String id, String pw, String name, String birth, String nickName, String pNo, String mail) {// 회원가입시 생성자
-		this.id = id;
-		this.pw = pw;
-		this.name = name;
-		this.birth = birth;//ssn에서 숫자추출하여 삽입(메서드)
-		// this.sex = ssn에서 숫자추출하여 삽입(메서드)
-		this.nickName = nickName;
-		this.pNo = pNo;
-		this.mail = mail;
-		this.author = Author.USER; // 회원가입시 권한부여
-		this.loginStatus = false; // 로그인하면 상태수정
+	// 메서드
+	//-----getter
+	public int getMno() {
+		return mno;
 	}
 
-	// 메서드
 	public String getId() {
 		return id;
 	}
 
 	public String getPw() {
 		return pw;
+	}
+
+	public String getName() {
+		return name;
 	}
 
 	public String getNickName() {
@@ -72,38 +70,41 @@ public class MemberDTO {
 		return mail;
 	}
 
-	public boolean setId(String joinID, ArrayList<MemberDTO> memberDTOs, boolean pass) {// 회원가입시 Id 생성 중복 검증용 setter	
-//		System.out.println("여기는 왓냐");			
-//		System.out.println(memberDTOs.size());
-			for (MemberDTO findId : memberDTOs) {
-				if (findId.getId().equals(joinID)) {					
-					this.usability = false;
-					System.out.println("사용중인 ID입니다.");
-					pass = false;
-					break;}
-								
-				}
-			this.id = joinID;
-			return pass;
-			
-			
-		
-
+	public Author getAuthor() {
+		return author;
 	}
 
-	public void setUsability(boolean usability) {
-		this.usability = usability;
+	public boolean isUsability() {
+		return usability;
+	}
+
+	public boolean isLoginStatus() {
+		return loginStatus;
+	}
+	
+	//-----setter
+
+	public void setMno(int mno) {
+		this.mno = mno;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public void setPw(String pw) {
 		this.pw = pw;
 	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public void setNickName(String nickName) {
 		this.nickName = nickName;
 	}
 
-	public void setBirth(String birth) {
+	public void setBirth(String birth) {//주민번호를 받아 생년월일부분을 추출하여 YYYY/MM/DD형의 문자열로 자동변환		
 		this.birth = birth;
 	}
 
@@ -119,52 +120,17 @@ public class MemberDTO {
 		this.mail = mail;
 	}
 
-	public Boolean getLoginStatus() {
-		return loginStatus;
-	}
-
-	public void setLoginStatus(Boolean loginStatus) {
-		this.loginStatus = loginStatus;
-	}
-
-	private String mail;
-
-	public Object getAuthor() {
-		return author;
-	}
-
 	public void setAuthor(Author author) {
 		this.author = author;
 	}
 
+	public void setUsability(boolean usability) {
+		this.usability = usability;
+	}
+
+	public void setLoginStatus(boolean loginStatus) {
+		this.loginStatus = loginStatus;
+	}
 	
-
-	public boolean isUsability() {
-		return usability;
-	}
-
-	/*
-	 * public void setUsability(boolean usability) { this.usability = usability; }
-	 */
-
-	@Override
-	public String toString() {
-		return "MemberDTO [id=" + id + ", pw=" + pw + ", name=" + name + ", nickName=" + nickName + ", birth=" + birth
-				+ ", sex=" + sex + ", pNo=" + pNo + ", loginStatus=" + loginStatus + ", usability=" + usability
-				+ ", author=" + author + ", mail=" + mail + "]";
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public void setid(String string) {
-		// TODO Auto-generated method stub
-		
-	}
 
 }

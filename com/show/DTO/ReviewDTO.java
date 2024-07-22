@@ -7,6 +7,15 @@ public class ReviewDTO {
 	private String review;
 	private String title;
 
+	public ReviewDTO() {}
+	
+	public ReviewDTO(String nickName, String starPoint, String review, String title) {
+		this.nickName = nickName;
+		this.starPoint = starPoint;
+		this.review = review;
+		this.title = title;
+	}
+
 	public String getTitle() {
 		return title;
 	}
